@@ -2,6 +2,7 @@ var amountWord = 100,
     minChars = 2,
     maxChars = 10,
     alphabet = 'abcdefghijklmnopqrstuvwxyz',
+    amountChars,
     dictionary = {};
 
 function random(max, min) {
@@ -10,7 +11,7 @@ function random(max, min) {
 
 for (var i = 0; i < amountWord; i++) {
     var word = '';
-    var amountChars = random(maxChars, minChars);
+    amountChars = random(maxChars, minChars);
     for (var j = 0; j < amountChars; j++) {
         var charIndex = random(0, alphabet.length - 1);
         word += alphabet[charIndex];
