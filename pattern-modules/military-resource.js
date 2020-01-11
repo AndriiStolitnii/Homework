@@ -30,16 +30,15 @@ var militaryResource = (function() {
     }
 })();
 
-var warrior = militaryResource.create('warrior', 10, 20);
+var warrior = militaryResource.create('warrior', 10, 0);
 console.log(warrior);
-var isReadyToMove = militaryResource.isReadyToMove();
-console.log(isReadyToMove);
-var isReadyToFight = militaryResource.isReadyToFight();
-console.log(isReadyToFight);
-warrior.health = 0;
-console.log(warrior);
-militaryResource.restore();
-console.log(warrior);
-var warriorClone = militaryResource.clone();
-console.log(warriorClone);
-
+// var isReadyToMove = militaryResource.isReadyToMove();
+// console.log(isReadyToMove);
+// var isReadyToFight = militaryResource.isReadyToFight();
+// console.log(isReadyToFight);
+// warrior.health = 0;
+// console.log(warrior);
+// militaryResource.restore();
+// console.log(warrior);
+// var warriorClone = militaryResource.clone();
+// console.log(warriorClone);
