@@ -1,37 +1,45 @@
 var militaryResource = (function() {
+    var unit = {
+        type: null,
+        health: null,
+        distance: null,
+        maxHealth: null,
+        maxDistance: null
+    }
     return {
-        createMilitaryResource: function (type, health, distance) {
-            return {
-                type: type,
-                health: health,
-                maxHealth: health,
-                distance: distance,
-                maxDistance: distance
-            }
+        create: function(type, health, distance) {
+            unit.type = type;
+            unit.health = health;
+            unit.distance = distance;
+            unit.maxHealth = health;
+            unit.maxDistance = distance;
+            return unit;
+        },
+        isReadyToMove: function() {
+            return unit.distance > 0;
+        },
+        isReadyToFight: function() {
+            return unit.health > 0;
+        },
+        restore: function() {
+            return unit.health = unit.maxHealth;
+        },
+        clone: function() {
+            return militaryResource.create(unit.type, unit.health, unit.distance);
         }
     }
 })();
 
-
-// function MilitaryResource(type, health, distance) {
-//     this.type = type;
-//     this.health = health;
-//     this.maxHealth = maxHealth = health;
-//     this.distance = distance;
-//     this.maxDistance = maxDistance = distance;
-// }
- 
-// MilitaryResource.prototype.isReadyToMove = function() {
-//      return this.distance > 0;
-// };
-// MilitaryResource.prototype.isReadyToFight = function() {
-//     return this.health > 0;
-// };
-// MilitaryResource.prototype.restore = function() {
-//     return this.health = this.maxHealth;
-// };
-// MilitaryResource.prototype.clone = function() {
-//     return new MilitaryResource(this.type, this.health, this.distance);
-// };
-var warrior = militaryResource.createMilitaryResource('warrior', 200, 300);
+var warrior = militaryResource.create('warrior', 10, 20);
 console.log(warrior);
+var isReadyToMove = militaryResource.isReadyToMove();
+console.log(isReadyToMove);
+var isReadyToFight = militaryResource.isReadyToFight();
+console.log(isReadyToFight);
+warrior.health = 0;
+console.log(warrior);
+militaryResource.restore();
+console.log(warrior);
+var warriorClone = militaryResource.clone();
+console.log(warriorClone);
+
