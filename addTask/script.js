@@ -1,12 +1,16 @@
-var number = (['a', 'b', 'c']),
-    result = [];
+let string = ['a', 'b', 'c'];
 
-for (var key in number) {
-    if (number.hasOwnProperty(key)) {
-        var string;
-        string = +key + 1 + ": " + number[key];    
-        result.push(string);
+function number(args) {
+    let result = [...args];
+    let map = new Map;
+    for (let i = 0; i < result.length; i++) {
+        map.set(i+1, result[0]);
     }
+    return map;
 }
 
-console.log(result);
+let res = number(string);
+// let myMap = new Map;
+// myMap.set(1, res[0])
+
+console.log(res);
