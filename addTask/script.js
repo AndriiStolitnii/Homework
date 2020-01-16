@@ -10,7 +10,4 @@ function number(args) {
 }
 
 let res = number(string);
-// let myMap = new Map;
-// myMap.set(1, res[0])
-
 console.log(res);
