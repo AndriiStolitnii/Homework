@@ -1,38 +1,36 @@
-var values = [1, 2, 3, 4, 5];
+const values = [1, 2, 3, 4, 5];
 
 var casino = {
     lines: [],
     result: null,
     resultAll: null,
     resuktLine: null,
-    createRandomLineFrom: function (arr) {
-        return arr.map(function () {
+    createRandomLineFrom: (arr) => {
+        return arr.map(() => {
             return Math.ceil(Math.random() * (arr.length - 1));
         });
     },
-    fillLines: function (linesAmount, fromArray) {
-        var self = this;
-        this.lines = Array(linesAmount).fill(1).map(function () {
-            return self.createRandomLineFrom(fromArray);
+    fillLines: (linesAmount, fromArray) => {
+        casino.lines = Array(linesAmount).fill(1).map(() => {
+            return casino.createRandomLineFrom(fromArray);
         })
     },
-    checkMainLine: function () {
-        var lineIndex = (this.lines[0].length - 1) / 2, 
-            value = this.lines[0][lineIndex];
-        return this.result = this.lines.every(function (line) {
+    checkMainLine: () => {
+        var lineIndex = (casino.lines[0].length - 1) / 2, 
+            value = casino.lines[0][lineIndex];
+        return casino.result = casino.lines.every((line) => {
             return line[lineIndex] === value;
         })
     },
-    checkLines: function (lineIndex) {
-        var value = this.lines[0][lineIndex];
-        return this.resultLine = this.lines.every(function (line) {
+    checkLines: (lineIndex) => {
+        var value = casino.lines[0][lineIndex];
+        return casino.resultLine = casino.lines.every((line) => {
             return line[lineIndex] === value;
         })
     },
-    checkAllLines: function () {
-        var self = this;
-        this.resultAll = this.lines[0].every(function (el, i) {
-            return self.checkLines(i);
+    checkAllLines: () => {
+        casino.resultAll = casino.lines[0].every((el, i) => {
+            return casino.checkLines(i);
         })
     }
 }

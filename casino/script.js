@@ -1,4 +1,4 @@
-casino.fillLines(2, values);
+casino.fillLines(3, values);
 casino.checkAllLines();
 casino.checkMainLine();
 casino.checkLines(1);
