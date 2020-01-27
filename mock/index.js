@@ -19,14 +19,12 @@ const mock = [firstCustomer, secondCustomer];
 const server = http.createServer((req, res) => {
     readFileWithPromise('./index.html')
     .then(data => {
-        console.log(data);
         res.statusCode = 200;
         res.setHeader("Content-Type", "text/html");
-        res.end(data);
+        res.end(mock);
     }); 
-});
+}); 
 
 server.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}`);
-    console.log(mock);  
 });
