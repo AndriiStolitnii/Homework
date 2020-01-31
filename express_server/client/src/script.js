@@ -1,17 +1,29 @@
-// const ajax = new XMLHttpRequest();
-const host = "http://localhost:8080";
-// ajax.open("get", host + "/mock");
-// ajax.setRequestHeader("Content-Type", "application/json");
-// ajax.addEventListener("load", (ev) => {
-//     console.log(JSON.parse(ev.target.response));
-// });
-// ajax.send();
+const axios = require("axios");
+const { apiUrl } = require("./constants");
 
-const newMock = {
-    name: "Inna",
-    age: "25"
+const planets = [];
+const planetList = document.createElement('ul');
+const body = document.getElementsByTagName('body')[0];
+body.appendChild(planetList);
+const getAllPlanets = () => {
+    axios.get(`${apiUrl}planets/`)
+        .then(data => {
+            planets = [...planets, ...data.data.results];
+            const url = data.data.next;
+            for (let index = 1; index < data.data.count / 10; index++) {
+                axios.get(`${url.slice(0, url.length - 1)}${index + 1}`)
+                    .then((response) => {
+                        planets = [...planets, ...response.data.results];
+                        if (planets.length === response.data.count) {
+                            planets.forEach(el => {
+                                let planetItem = document.createElement('li');
+                                planetList.appendChild(planetItem);
+                                planetItem.innerHTML += el.name;
+                            })
+                        }
+                    })
+            }
+        })
 };
-const post = new XMLHttpRequest();
-post.open("post", host + "/mock");
-post.setRequestHeader("Content-Type", "application/json");
-post.send(JSON.stringify(newMock));
+
+getAllPlanets();

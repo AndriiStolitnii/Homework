@@ -13,7 +13,10 @@ const mock = [
         age: "23"
     }
 ];
-app.use("/public", express.static("public")).use(cors()).use(express.json());
+app
+.use("/public", express.static("public"))
+.use(cors())
+.use(express.json());
 app.get("/", (req, res) => res.send("Hello world"));
 app.get("/mock", (req, res) => res.send(mock));
 app.post("/mock", (req, res) => {
